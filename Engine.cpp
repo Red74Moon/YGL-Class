@@ -1,5 +1,8 @@
-#include "Engine.h"
 #include <iostream>
+
+#include "Engine.h"
+#include "player.h"
+#include "Map.h"
 using namespace std;
 
 Engine::Engine()
