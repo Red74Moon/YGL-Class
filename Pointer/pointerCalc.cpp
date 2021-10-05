@@ -22,13 +22,20 @@ void Calculate(int a, int b, Result* ResultPointer)
 }
 
 int main()
-{
+{	
+	Result r1;
+
+	
+
 	Result* ResultPointer = new Result();
 	int* IntPointer = new int();
+
 
 	Calculate(2, 3, ResultPointer);
 
 	cout << (*ResultPointer).Add << endl;
+	cout << ResultPointer->Add << endl;
+
 
 	delete ResultPointer;
 	delete IntPointer;
