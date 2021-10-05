@@ -9,13 +9,18 @@
 class Engine
 {
 public:
-	void Initailize();
+	Engine(); // 생성자 - Default Constructor
+	~Engine(); // 파괴자 - Destructor
+
 	void Run();
+	
+private:
+	void Initailize();
 	void Terminalize();
 
-private:
 	void Input();
 	void Process();
 	void Render();
+	
 };
 

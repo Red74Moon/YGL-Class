@@ -9,11 +9,9 @@ using namespace std;
 
 int main()
 {
-	Engine  engine;
+	Engine engine;
 
-	engine.Initailize();
 	engine.Run();
-	engine.Terminalize();
 
 	return 0;
 }

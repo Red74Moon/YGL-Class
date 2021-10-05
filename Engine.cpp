@@ -2,8 +2,21 @@
 #include <iostream>
 using namespace std;
 
+Engine::Engine()
+{
+	cout << "엔진이 생성 되었습니다." << endl;
+	Initailize();
+}
+
+Engine::~Engine()
+{
+	Terminalize();
+	cout << "엔진이 파괴 되었습니다." << endl;
+}
+
 void Engine::Initailize()
 {
+	cout << "초기화 되었습니다." << endl;
 }
 
 //1Frame 생성 1/60s
@@ -19,7 +32,7 @@ void Engine::Run()
 
 void Engine::Terminalize()
 {
-	cout << "종료한다." << endl;
+	cout << "종료 되었습니다." << endl;
 }
 
 void Engine::Input()
