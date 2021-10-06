@@ -43,7 +43,7 @@ int main()
 	Engine* Engine1 = new Engine();
 	Actor*  Actor1  = new Actor();
 
-	(*Engine1).RunEngine();
+	(*Engine1).Run();
 	Actor1->BeginPlay();
 
 	Engine1->SpawnActor();

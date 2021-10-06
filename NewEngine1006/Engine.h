@@ -22,7 +22,7 @@ public:
 	Engine();
 	~Engine();
 
-	void RunEngine();
+	void Run();
 	void SpawnActor();
 	void DestoryActor(int Index);
 	
@@ -31,14 +31,17 @@ private:
 	void BeginPlay();
 	void Tick();
 	void Input();
-	void Reder();
+	void Render();
 	void BeginOverlap();
 	void Term();
 
 	//Actor* Actors[10]; 
 	vector<Actor*> Actors;
 
-	int CountOfActors = 0;
+	//int CountOfActors = 0;
+
+	bool blsRunning = true;
+	bool bFirstRun  = true;
 };
 
 
