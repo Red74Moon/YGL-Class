@@ -25,8 +25,6 @@ int main()
 {	
 	Result r1;
 
-	
-
 	Result* ResultPointer = new Result();
 	int* IntPointer = new int();
 
