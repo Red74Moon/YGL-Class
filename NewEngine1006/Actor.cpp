@@ -1,29 +1,35 @@
 #include "Actor.h"
+#include <iostream>
+
+using namespace std;
+
 
 Actor::Actor()
 {
+	cout << "Avtor »ý¼º" << endl;
 }
 
 Actor::~Actor()
 {
+	cout << "Avtor ÆÄ±«" << endl;
 }
 
-void Actor::Tick()
+void Actor::ActorTick()
 {
 }
 
-void Actor::BeginPlay()
+void Actor::ActorBeginPlay()
 {
 }
 
-void Actor::Input()
+void Actor::ActorInput()
 {
 }
 
-void Actor::Rendering()
+void Actor::ActorRendering()
 {
 }
 
-void Actor::BeginOverlap()
+void Actor::ActorBeginOverlap()
 {
 }

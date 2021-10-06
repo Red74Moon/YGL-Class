@@ -1,15 +1,22 @@
 #pragma once
-
+/*
+	BeginOverlap
+	BeginPlay
+	Tick
+	Input
+	Render
+*/
 class Actor
 {
 public:
 	Actor();
 	~Actor();
 
-	void Tick();
-	void BeginPlay();
-	void Input();
-	void Rendering();
-	void BeginOverlap();
-};
+	void ActorTick();
+	void ActorBeginPlay();
+	void ActorBeginOverlap();
 
+private:
+	void ActorInput();
+	void ActorRendering();
+};
