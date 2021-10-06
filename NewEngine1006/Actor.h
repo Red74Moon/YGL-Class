@@ -15,8 +15,6 @@ public:
 	void Tick();
 	void BeginPlay();
 	void BeginOverlap();
-
-private:
 	void Input();
 	void Render();
 };

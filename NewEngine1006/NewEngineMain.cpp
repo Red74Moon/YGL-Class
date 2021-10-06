@@ -40,18 +40,21 @@ int main()
 
 	//cout << Actors.size() << endl;
 
-	Engine* Engine1 = new Engine();
-	Actor*  Actor1  = new Actor();
+	Engine* Engine1 = new Engine();   // Wall, PLayer, Goal (Object) - »ó¼Ó
+	//Actor*  Actor1  = new Actor();
 
-	(*Engine1).Run();
-	Actor1->BeginPlay();
+	//(*Engine1).Run();
+	//Actor1->BeginPlay();
 
 	Engine1->SpawnActor();
 	Engine1->SpawnActor();
+	Engine1->SpawnActor();
 
-	Engine1->DestoryActor(0);
+	//Engine1->DestoryActor(0);
 
-	delete Actor1;
+	Engine1->Run();
+
+	//delete Actor1;
 	delete Engine1;
 
 	return 0;

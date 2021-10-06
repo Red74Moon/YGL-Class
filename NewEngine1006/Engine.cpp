@@ -64,14 +64,29 @@ void Engine::Tick()
 		bFirstRun = false;
 		BeginPlay();
 	}
+	cout << "엔진 Tick 실행입니다." << endl;
+	for (size_t i = 0; i < Actors.size(); ++i)
+	{
+		Actors[i]->Tick(); 
+	}
 }
 
 void Engine::Input()
 {
+	for (size_t i = 0; i < Actors.size(); ++i)
+	{
+		Actors[i]->Input();
+	}
+	cout << "엔진이 입력 실행입니다." << endl;
 }
 
 void Engine::Render()
 {
+	for (size_t i = 0; i < Actors.size(); ++i)
+	{
+		Actors[i]->Render();
+	}
+	cout << "엔진이 렌더링 실행입니다." << endl;
 }
 
 void Engine::BeginOverlap()

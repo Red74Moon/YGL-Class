@@ -16,18 +16,22 @@ Actor::~Actor()
 
 void Actor::Tick()
 {
+	cout << "Actor Tick" << endl;
 }
 
 void Actor::BeginPlay()
 {
+	cout << "Actor beginplay" << endl;
 }
 
 void Actor::Input()
 {
+	cout << "Actor input" << endl;
 }
 
 void Actor::Render()
 {
+	cout << "Actor render" << endl;
 }
 
 void Actor::BeginOverlap()

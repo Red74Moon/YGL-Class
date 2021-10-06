@@ -141,7 +141,10 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="NewEngineMain.cpp" />
+    <ClCompile Include="exmVecter.cpp" />
+    <ClCompile Include="NewEngineMain.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
