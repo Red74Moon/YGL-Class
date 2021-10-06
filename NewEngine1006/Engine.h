@@ -23,17 +23,17 @@ public:
 	void DestoryActor(int Index);
 	
 private:
-	void Initialize();
+	void Init();
 	void BeginPlay();
 	void Tick();
 	void Input();
-	void Redering();
+	void Reder();
 	void BeginOverlap();
-	void Terminalize();
+	void Term();
 
 	Actor* Actors[10];
 
-	int CountofActors = 0;
+	int CountOfActors = 0;
 };
 
 

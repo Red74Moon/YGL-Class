@@ -12,11 +12,11 @@ public:
 	Actor();
 	~Actor();
 
-	void ActorTick();
-	void ActorBeginPlay();
-	void ActorBeginOverlap();
+	void Tick();
+	void BeginPlay();
+	void BeginOverlap();
 
 private:
-	void ActorInput();
-	void ActorRendering();
+	void Input();
+	void Render();
 };

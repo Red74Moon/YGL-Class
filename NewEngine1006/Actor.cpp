@@ -14,22 +14,22 @@ Actor::~Actor()
 	cout << "Avtor ÆÄ±«" << endl;
 }
 
-void Actor::ActorTick()
+void Actor::Tick()
 {
 }
 
-void Actor::ActorBeginPlay()
+void Actor::BeginPlay()
 {
 }
 
-void Actor::ActorInput()
+void Actor::Input()
 {
 }
 
-void Actor::ActorRendering()
+void Actor::Render()
 {
 }
 
-void Actor::ActorBeginOverlap()
+void Actor::BeginOverlap()
 {
 }

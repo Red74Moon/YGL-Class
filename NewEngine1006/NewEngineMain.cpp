@@ -38,17 +38,17 @@ int main()
 
 
 	//Engine* Engine1 = new Engine();
-	////Actor*  Actor1  = new Actor();
+	//Actor*  Actor1  = new Actor();
 
-	////(*Engine1).RunEngine();
-	////Actor1->ActorBeginPlay();
+	//(*Engine1).RunEngine();
+	//Actor1->ActorBeginPlay();
 
 	//Engine1->SpawnActor();
 	//Engine1->SpawnActor();
 
 	//Engine1->DestoryActor(0);
 
-	////delete Actor1;
+	//delete Actor1;
 	//delete Engine1;
 
 	return 0;
