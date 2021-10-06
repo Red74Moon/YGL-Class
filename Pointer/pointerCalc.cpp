@@ -28,7 +28,6 @@ int main()
 	Result* ResultPointer = new Result();
 	int* IntPointer = new int();
 
-
 	Calculate(2, 3, ResultPointer);
 
 	cout << (*ResultPointer).Add << endl;
