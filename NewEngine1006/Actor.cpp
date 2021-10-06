@@ -23,3 +23,7 @@ void Actor::Input()
 void Actor::Rendering()
 {
 }
+
+void Actor::BeginOverlap()
+{
+}

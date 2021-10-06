@@ -1,4 +1,5 @@
 #pragma once
+
 class Actor
 {
 public:
@@ -9,5 +10,6 @@ public:
 	void BeginPlay();
 	void Input();
 	void Rendering();
+	void BeginOverlap();
 };
 

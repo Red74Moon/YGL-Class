@@ -1,4 +1,7 @@
 #pragma once
+
+#include "Actor.h"
+
 class Engine
 {
 public:
@@ -9,6 +12,9 @@ public:
 	void Input();
 	void Redering();
 	void BeginOverlap();
+	
+	Actor actor[10];
+	
 };
 
 
