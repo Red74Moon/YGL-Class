@@ -27,6 +27,9 @@
     <ClCompile Include="exmVecter.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="exmSTL.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
