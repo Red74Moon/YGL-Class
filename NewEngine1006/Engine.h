@@ -1,5 +1,9 @@
 #pragma once
 
+#include <vector> 
+
+using namespace std;
+
 /*
 	√ ±‚»≠
 	√—∑·
@@ -31,7 +35,8 @@ private:
 	void BeginOverlap();
 	void Term();
 
-	Actor* Actors[10];
+	//Actor* Actors[10]; 
+	vector<Actor*> Actors;
 
 	int CountOfActors = 0;
 };

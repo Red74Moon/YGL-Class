@@ -12,7 +12,7 @@
 */
 
 #include <iostream>
-#include <vector>
+#include <vector> // STL
 
 #include "Engine.h"
 #include "Actor.h"
@@ -27,29 +27,32 @@ using namespace std;
 
 int main()
 {
-	vector<Actor*> Actors;
+	//vector<Actor*> Actors;
 
-	Actors.push_back(new Actor()); // 액터를 하나 만들어 넣는다.
-	Actors.push_back(new Actor());
-	Actors.push_back(new Actor());
-	Actors.push_back(new Actor());
+	//Actors.push_back(new Actor()); // 액터를 하나 만들어 넣는다.
+	//Actors.push_back(new Actor());
+	//Actors.push_back(new Actor());
+	//Actors.push_back(new Actor());
 
-	cout << Actors.size() << endl;
+	//cout << Actors.size() << endl;
 
+	//Actors.erase(Actors.begin()+0);
 
-	//Engine* Engine1 = new Engine();
-	//Actor*  Actor1  = new Actor();
+	//cout << Actors.size() << endl;
 
-	//(*Engine1).RunEngine();
-	//Actor1->ActorBeginPlay();
+	Engine* Engine1 = new Engine();
+	Actor*  Actor1  = new Actor();
 
-	//Engine1->SpawnActor();
-	//Engine1->SpawnActor();
+	(*Engine1).RunEngine();
+	Actor1->BeginPlay();
 
-	//Engine1->DestoryActor(0);
+	Engine1->SpawnActor();
+	Engine1->SpawnActor();
 
-	//delete Actor1;
-	//delete Engine1;
+	Engine1->DestoryActor(0);
+
+	delete Actor1;
+	delete Engine1;
 
 	return 0;
 }
