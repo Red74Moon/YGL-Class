@@ -1,6 +1,7 @@
-#include "Floor.h"
 #include <iostream>
 #include <windows.h>
+
+#include "Floor.h"
 
 AFloor::AFloor()
 {

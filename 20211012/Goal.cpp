@@ -1,6 +1,7 @@
-#include "Goal.h"
 #include <iostream>
 #include <windows.h>
+
+#include "Goal.h"
 
 using namespace std;
 

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <windows.h>
+
 #include "Wall.h"
 
 using namespace std;
