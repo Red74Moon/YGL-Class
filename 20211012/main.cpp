@@ -15,7 +15,6 @@ int main()
 {
 	//UEngine* Engine = new UEngine();
 	UEngine Engine;
-
 	Engine.SpawnWall(FVector2D(0, 0));
 	Engine.SpawnWall(FVector2D(1, 0));
 	Engine.SpawnWall(FVector2D(2, 0));
