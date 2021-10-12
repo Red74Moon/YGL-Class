@@ -1,18 +1,16 @@
 #pragma once
 
 #include "Vector2D.h"
+#include "Actor.h"
 
-class APlayer
+class APlayer : public AActor //»ó¼Ó
 {
 public:
 	APlayer();
 	~APlayer();
 
-private:
-	FVector2D Locatoin;
-	
-	void Input();
 	void Render();
-	void Tick();
+
+
 };
 

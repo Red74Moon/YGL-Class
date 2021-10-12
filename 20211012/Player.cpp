@@ -2,7 +2,6 @@
 #include <iostream>
 
 
-
 APlayer::APlayer()
 {
 }
@@ -11,15 +10,15 @@ APlayer::~APlayer()
 {
 }
 
-void APlayer::Input()
-{
-}
+//void APlayer::Input()
+//{
+//}
 
 void APlayer::Render()
 {
 	std::cout << "P" << std::endl;
 }
 
-void APlayer::Tick()
-{
-}
+//void APlayer::Tick()
+//{
+//}

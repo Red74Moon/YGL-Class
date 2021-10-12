@@ -55,4 +55,37 @@ void UWorld::Term()
 
 void UWorld::Run()
 {
+	while (true)
+	{
+		//Input
+		//Tick
+		
+
+		//Render 각각 그려주기 
+		for (size_t i = 0; i < Walls.size(); ++i)
+		{
+			if (Walls[i] != nullptr)
+			{
+				Walls[i]->Render();
+			}
+		}
+
+		for (size_t i = 0; i < Floors.size(); ++i)
+		{
+			if (Floors[i] != nullptr)
+			{
+				Floors[i]->Render();
+			}
+		}
+
+		if (Player != nullptr)
+		{
+			Player->Render();
+		}
+
+		if (Goal != nullptr)
+		{
+			Goal->Render();
+		}
+	}
 }

@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "Engine.h"
+#include "Player.h"
 
 using namespace std;
 

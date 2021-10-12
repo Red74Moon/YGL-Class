@@ -13,6 +13,8 @@ UEngine::~UEngine()
 
 void UEngine::Run()
 {
+	World->Run();
+
 }
 
 void UEngine::Init()

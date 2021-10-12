@@ -1,16 +1,13 @@
 #pragma once
 
 #include "Vector2D.h"
+#include "Actor.h"
 
-class AWall
+class AWall : public AActor
 {
 public:
 	AWall();
 	~AWall();
-
-private:
-	// º®ÀÇ ÁÂÇ¥
-	FVector2D Location;
 
 	void Render();
 };

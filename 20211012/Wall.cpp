@@ -18,3 +18,9 @@ void AWall::Render()
 	//Ãâ·Â
 	cout << "#" << endl;
 }
+
+//void AWall::SetLocation(FVector2D NewLocatoin)
+//{
+//	Location.X = NewLocatoin.X;
+//	Location.Y = NewLocatoin.Y;
+//}
