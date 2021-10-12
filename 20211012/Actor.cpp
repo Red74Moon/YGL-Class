@@ -1,7 +1,5 @@
 #include <iostream>
-
 #include "Actor.h"
-
 
 AActor::AActor()
 {

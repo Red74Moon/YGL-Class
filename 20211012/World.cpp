@@ -5,6 +5,8 @@
 #include "Wall.h"
 #include "Player.h"
 
+#include <iostream>
+
 UWorld::UWorld()
 {
 }
@@ -89,3 +91,5 @@ void UWorld::Run()
 		}
 	}
 }
+
+

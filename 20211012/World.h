@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include "Vector2D.h"
 
 class APlayer;
 class AFloor;
@@ -15,7 +16,6 @@ public:
 
 	void Init();
 	void Term();
-
 	void Run();
 
 private:

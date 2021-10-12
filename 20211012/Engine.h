@@ -1,4 +1,10 @@
 #pragma once
+
+#include "Vector2D.h"
+#include "Actor.h"
+#include "World.h"
+#include <iostream>
+
 class UEngine
 {
 public: // 사용자(개발자, 다른 프로그램을 만드는 개발자)
@@ -10,6 +16,7 @@ public: // 사용자(개발자, 다른 프로그램을 만드는 개발자)
 	*/
 
 	void Run();
+
 
 private: // 실제 엔진 개발자가 사용
 	/* 엔진이 실행 중이면 true, 아니면 false */
@@ -27,4 +34,5 @@ private: // 실제 엔진 개발자가 사용
 
 
 }; 
+
 

@@ -1,5 +1,8 @@
 #include "Engine.h"
 #include "World.h"
+#include "Actor.h"
+
+#include <vector>
 
 UEngine::UEngine()
 {
