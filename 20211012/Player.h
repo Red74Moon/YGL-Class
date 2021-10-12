@@ -9,7 +9,10 @@ public:
 	APlayer();
 	~APlayer();
 
+	void Input();
+	void Tick();
 	void Render();
+	
 
 
 };

@@ -9,6 +9,8 @@ public:
 	AWall();
 	~AWall();
 
+	void Input();
+	void Tick();
 	void Render();
 };
 

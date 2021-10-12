@@ -9,6 +9,8 @@ public:
 	AFloor();
 	~AFloor();
 
+	void Input();
+	void Tick();
 	void Render();
 };
 
