@@ -92,4 +92,24 @@ void UWorld::Run()
 	}
 }
 
+void UWorld::AddPlayer(APlayer* NewPlayer) // 예외처리 필요하다. 플레이어가 있는데 또 만들수 있기 때문이다.
+{
+	Player = NewPlayer;
+}
+
+void UWorld::AddWall(AWall* NewWall)
+{
+	Walls.push_back(NewWall);
+}
+
+void UWorld::AddFloor(AFloor* NewFloor)
+{
+	Floors.push_back(NewFloor);
+}
+
+void UWorld::AddGoal(AGoal* NewGoal)
+{
+	Goal = NewGoal;
+}
+
 
