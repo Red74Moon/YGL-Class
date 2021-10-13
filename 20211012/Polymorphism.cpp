@@ -26,13 +26,9 @@ public:
 
 	virtual void Move() = 0;  // 순수가상함수(인터페이스), 
 							  // 바로 생성이 안되고 상속 후에 생성이 된다.
-	//virtual void Attack();
-	//virtual void Back();
 
 protected:
-	//int Hp;
-	//int Mp;
-	//int Gold;
+
 
 private:
 };
@@ -54,35 +50,6 @@ public:
 	{
 		cout << "Player 이동" << endl;
 	}
-	//void Attack() override;
-	//void Back()   override;
-
-	//void SetHp(int NewHp)
-	//{
-	//	Hp = NewHp;
-	//}
-	//int GetHp()
-	//{
-	//	return Hp;
-	//}
-
-	//void SetMp(int NewMp)
-	//{
-	//	NewMp = Mp;
-	//}
-	//int GetMp()
-	//{
-	//	return Mp;
-	//}
-
-	//void SetGold(int NewGold)
-	//{
-	//	NewGold = Gold;
-	//}
-	//int GetGold()
-	//{
-	//	return Gold;
-	//}
 };
 
 class Monster : public Character
@@ -101,26 +68,6 @@ public:
 	{
 		cout << "Monster 이동" << endl;
 	}
-	//virtual void Attack() override;
-	//virtual void Back()   override;
-
-	//void SetHp(int NewMonsterHp)
-	//{
-	//	Hp = NewMonsterHp;
-	//}
-	//int GetHp()
-	//{
-	//	return Hp;
-	//}
-
-	//void SetMp(int NewMonsterMp)
-	//{
-	//	NewMonsterMp = Mp;
-	//}
-	//int GetMp()
-	//{
-	//	return Mp;
-	//}
 };
 
 class Goblin : public Monster
@@ -148,7 +95,7 @@ public:
 	{
 		cout << "Hog 생성" << endl;
 	}
-	~Hog()
+	virtual ~Hog()
 	{
 		cout << "Hog 소멸" << endl;
 	}
@@ -185,9 +132,9 @@ int main()
 	Characters.push_back(new Player());
 
 
-	srand(time(nullptr));
+	srand(static_cast<int>(time(nullptr)));
 
-	for (size_t i=0; i < 10; ++i)
+	for (size_t i = 0; i < 10; ++i)
 	{
 		int Type = rand() % 3;
 		if (Type == 0)
@@ -204,6 +151,8 @@ int main()
 		}
 	}
 
+	// 아래 for문은 동일하다.
+	// 
 	//for (size_t i = 0; i < Characters.size(); ++i)
 	//{
 	//	Characters[i]->Move();
@@ -213,12 +162,21 @@ int main()
 	//{
 	//	PlayCharacter->Move();
 	//}
-
+	// 
+	//for (Character* PlayCharacter : Characters)
+	//{
+	//	PlayCharacter->Move();
+	//}
+	// 
+	//for (vector<Character*>::iterator iter = Characters.begin(); iter != Characters.end(); ++iter)
+	//{
+	//	(*iter)->Move();
+	//}
+	//
 	for (auto iter = Characters.begin(); iter != Characters.end(); ++iter)
 	{
 		(*iter)->Move();
 	}
-
 
 	return 0;
 }
