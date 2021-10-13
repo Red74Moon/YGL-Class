@@ -66,7 +66,8 @@ bool UEngine::LoadLevel(std::string filename)
 		Y++;
 	}
 	fin.close();
-	return false;
+
+	return true;
 }
 
 void UEngine::SpawnPlayer(FVector2D NewLocation)

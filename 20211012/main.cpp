@@ -16,7 +16,7 @@ int main()
 	UEngine Engine;
 
 	bool Result = Engine.LoadLevel("map01.txt");
-	if (Result)
+	if (!Result)
 	{
 		cout << "fail load mapdata." << endl;
 		return 1;

@@ -21,6 +21,7 @@ void AActor::Tick()
 
 void AActor::Render()
 {
+	// 출력 위치
 	COORD Cur;
 	Cur.X = Location.X;
 	Cur.Y = Location.Y;

@@ -6,7 +6,7 @@
 #include "Wall.h"
 #include "Player.h"
 
-#include <iostream>
+//#include <iostream>
 
 
 UWorld::UWorld()
