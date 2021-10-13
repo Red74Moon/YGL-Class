@@ -9,7 +9,7 @@ public:
 
 	void input();
 	void Tick();
-	void Render();
+	virtual void Render(); // 자식이 같은 함수가 있으면 자식것을 사용한다.
 
 	//Accessor
 	void SetLocation(FVector2D NewLocatoin);

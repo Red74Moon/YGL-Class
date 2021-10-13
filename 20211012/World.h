@@ -1,7 +1,11 @@
 #pragma once
 
+#include <iostream>
+#include <typeinfo>
 #include <vector>
+
 #include "Vector2D.h"
+#include "Actor.h"
 
 class APlayer;
 class AFloor;
@@ -29,5 +33,10 @@ private:
 
 	APlayer* Player;
 	AGoal* Goal;
+
+
+	// 위에꺼 전부 포함 하는 액터
+	
+	std::vector<AActor*> Actors;
 };
 

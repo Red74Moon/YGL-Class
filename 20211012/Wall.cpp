@@ -1,5 +1,5 @@
 #include <iostream>
-#include <windows.h>
+//#include <windows.h>
 
 #include "Wall.h"
 
@@ -15,11 +15,13 @@ AWall::~AWall()
 
 void AWall::Render()
 {
+	AActor::Render();
+
 	//위치 지정
-	COORD Cur;
-	Cur.X = Location.X;
-	Cur.Y = Location.Y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Cur);
+	//COORD Cur;
+	//Cur.X = Location.X;
+	//Cur.Y = Location.Y;
+	//SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Cur);
 
 	//출력
 	cout << "#" << endl;

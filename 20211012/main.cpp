@@ -1,11 +1,9 @@
 //»ó¼Ó
 
 #include <iostream>
-#include <string>
-#include <fstream>
-#include <vector>
 
 #include "Engine.h"
+
 #include "Player.h"
 #include "Floor.h"
 #include "Wall.h"
@@ -15,24 +13,16 @@ using namespace std;
 
 int main()
 {
-    string filename("map01.txt");
-    vector<string> lines;
-    string line;
+	UEngine Engine;
 
-    ifstream input_file(filename);
-    if (!input_file.is_open()) {
-        cerr << "Could not open the file - '"
-            << filename << "'" << endl;
-        return EXIT_FAILURE;
-    }
+	bool Result = Engine.LoadLevel("map01.txt");
+	if (Result)
+	{
+		cout << "fail load mapdata." << endl;
+		return 1;
+	}
 
-    while (getline(input_file, line)) {
-        lines.push_back(line);
-    }
+	Engine.Run();
 
-    for (const auto& i : lines)
-        cout << i << endl;
-
-    input_file.close();
-    return EXIT_SUCCESS;
+	return 0;
 }

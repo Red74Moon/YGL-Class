@@ -5,6 +5,7 @@
 #include "World.h"
 #include <iostream>
 
+
 class UEngine
 {
 public: // 사용자(개발자, 다른 프로그램을 만드는 개발자)
@@ -16,6 +17,8 @@ public: // 사용자(개발자, 다른 프로그램을 만드는 개발자)
 	*/
 
 	void Run();
+
+	bool LoadLevel(std::string filename);
 
 	void SpawnPlayer(FVector2D NewLocation);
 	void SpawnWall(FVector2D NewLocation);

@@ -9,8 +9,6 @@ public:
 	APlayer();
 	~APlayer();
 
-	void Input();
-	void Tick();
-	void Render();
+	 void Render() override; // 부모에게 같은 함수가 있다.
 };
 
