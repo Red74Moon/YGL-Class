@@ -18,7 +18,7 @@ public:
 private: // 상속 안해 줌.
 
 protected: 
-	// 벽의 좌표
+	//  좌표
 	FVector2D Location;
 };
 

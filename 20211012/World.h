@@ -29,8 +29,5 @@ private:
 
 	APlayer* Player;
 	AGoal* Goal;
-
-
-	
 };
 

@@ -49,7 +49,7 @@ void UWorld::Term()
 		Player = nullptr;
 	}
 
-	if (Goal != nullptr) // 목적지 포인터가 가르치는 메모리 번지의 값을 해방
+	if (Goal != nullptr) // 목적지 포인터가 가리키는 메모리 번지의 값을 해방
 	{
 		delete Goal;
 		Goal = nullptr;
