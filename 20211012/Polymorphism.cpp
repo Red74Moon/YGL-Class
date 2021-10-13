@@ -6,6 +6,9 @@
 // 앞의 내용을 보고 클래스의 상속을 이용하여 설계 해 보세요.
 
 #include <iostream>
+#include <vector>
+#include <time.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -21,14 +24,15 @@ public:
 		cout << "Character 소멸" << endl;
 	}
 
-	virtual void Move() = 0;  // 순수가상함수, 상속 받아서만 만들 수 있다.
+	virtual void Move() = 0;  // 순수가상함수(인터페이스), 
+							  // 바로 생성이 안되고 상속 후에 생성이 된다.
 	//virtual void Attack();
 	//virtual void Back();
 
 protected:
-	int Hp;
-	int Mp;
-	int Gold;
+	//int Hp;
+	//int Mp;
+	//int Gold;
 
 private:
 };
@@ -48,37 +52,37 @@ public:
 
 	virtual void Move() override
 	{
-
+		cout << "Player 이동" << endl;
 	}
 	//void Attack() override;
 	//void Back()   override;
 
-	void SetHp(int NewHp)
-	{
-		Hp = NewHp;
-	}
-	int GetHp()
-	{
-		return Hp;
-	}
+	//void SetHp(int NewHp)
+	//{
+	//	Hp = NewHp;
+	//}
+	//int GetHp()
+	//{
+	//	return Hp;
+	//}
 
-	void SetMp(int NewMp)
-	{
-		NewMp = Mp;
-	}
-	int GetMp()
-	{
-		return Mp;
-	}
+	//void SetMp(int NewMp)
+	//{
+	//	NewMp = Mp;
+	//}
+	//int GetMp()
+	//{
+	//	return Mp;
+	//}
 
-	void SetGold(int NewGold)
-	{
-		NewGold = Gold;
-	}
-	int GetGold()
-	{
-		return Gold;
-	}
+	//void SetGold(int NewGold)
+	//{
+	//	NewGold = Gold;
+	//}
+	//int GetGold()
+	//{
+	//	return Gold;
+	//}
 };
 
 class Monster : public Character
@@ -95,7 +99,7 @@ public:
 
 	virtual void Move() override
 	{
-
+		cout << "Monster 이동" << endl;
 	}
 	//virtual void Attack() override;
 	//virtual void Back()   override;
@@ -131,7 +135,10 @@ public:
 		cout << "Goblin 소멸" << endl;
 	}
 
-	//void Move();
+	virtual void Move() override
+	{
+		cout << "Goblin 이동" << endl;
+	}
 };
 
 class Hog : public Monster
@@ -146,7 +153,10 @@ public:
 		cout << "Hog 소멸" << endl;
 	}
 
-	//void Move();
+	virtual void Move() override
+	{
+		cout << "Hog 이동" << endl;
+	}
 };
 
 class Slime : public Monster
@@ -161,21 +171,54 @@ public:
 		cout << "Slime 소멸" << endl;
 	}
 
-	//void Move();
+	virtual void Move() override
+	{
+		cout << "Slime 이동" << endl;
+	}
 };
 
-//void Actor::Move()
-//{
-//	cout << "고블린 움직임" << endl;
-//}
 
 int main()
 {
-	Character* character = new Player();
-	Character* AGoblin   = new Goblin();
+	vector<Character*> Characters;
+
+	Characters.push_back(new Player());
 
 
-	delete AGoblin;
+	srand(time(nullptr));
+
+	for (size_t i=0; i < 10; ++i)
+	{
+		int Type = rand() % 3;
+		if (Type == 0)
+		{
+			Characters.push_back(new Goblin());
+		}
+		else if (Type == 1)
+		{
+			Characters.push_back(new Slime());
+		}
+		else 
+		{
+			Characters.push_back(new Hog());
+		}
+	}
+
+	//for (size_t i = 0; i < Characters.size(); ++i)
+	//{
+	//	Characters[i]->Move();
+	//}
+
+	//for (auto PlayCharacter : Characters)
+	//{
+	//	PlayCharacter->Move();
+	//}
+
+	for (auto iter = Characters.begin(); iter != Characters.end(); ++iter)
+	{
+		(*iter)->Move();
+	}
+
 
 	return 0;
 }
