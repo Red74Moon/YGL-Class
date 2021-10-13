@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <typeinfo>
+//#include <typeinfo>
 #include <vector>
 
 #include "Vector2D.h"

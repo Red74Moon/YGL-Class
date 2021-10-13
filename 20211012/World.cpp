@@ -99,6 +99,7 @@ void UWorld::Run()
 		CurrentActor->Render();
 	}*/
 
+	//iterator
 	for (auto CurrentActor = Actors.begin(); CurrentActor != Actors.end(); CurrentActor++)
 	{
 		(*CurrentActor)->Render();
