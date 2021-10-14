@@ -26,11 +26,6 @@ public:
 
 	virtual void Move() = 0;  // 순수가상함수(인터페이스), 
 							  // 바로 생성이 안되고 상속 후에 생성이 된다.
-
-protected:
-
-
-private:
 };
 
 
@@ -130,7 +125,6 @@ int main()
 	vector<Character*> Characters;
 
 	Characters.push_back(new Player());
-
 
 	srand(static_cast<int>(time(nullptr)));
 
