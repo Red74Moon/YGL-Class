@@ -5,6 +5,14 @@ Circle::Circle()
 {
 }
 
+Circle::Circle(int NewX, int NewY, int NewRadius)
+{
+	SetX(NewX);
+	SetY(NewY);
+	SetRadius(NewRadius);
+	Name = "¿ø";
+}
+
 Circle::~Circle()
 {
 }

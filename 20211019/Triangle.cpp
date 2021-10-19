@@ -1,15 +1,23 @@
 #include "Triangle.h"
 #include <iostream>
 
-Trangle::Trangle()
+Triangle::Triangle()
 {
 }
 
-Trangle::~Trangle()
+Triangle::Triangle(int NewX, int NewY, int NewEdge)
+{
+	SetX(NewX);
+	SetY(NewY);
+	SetEdge(NewEdge);
+	Name = "세모";
+}
+
+Triangle::~Triangle()
 {
 }
 
-void Trangle::Draw()
+void Triangle::Draw()
 {
 	std::cout << "삼각형 그리기" << std::endl;
 }

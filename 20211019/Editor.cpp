@@ -1,5 +1,9 @@
+#include <iostream>
 #include "Editor.h"
 #include "Shape.h"
+#include "Triangle.h"
+#include "Rectangle.h"
+#include "Circle.h"
 
 Editor::Editor()
 {
@@ -39,6 +43,42 @@ void Editor::Draw()
 
 void Editor::Save()
 {
+	for (auto Object : Shapes)
+	{
+		// 심각형이라면 밑변의 길이, 높이가 필요
+		if (dynamic_cast<Triangle*>(Object) != nullptr)
+		{
+			Triangle* T = dynamic_cast<Triangle*>(Object);
+
+			std::cout << T->GetName() << std::endl;
+			std::cout << T->GetX() << std::endl;
+			std::cout << T->GetY() << std::endl;
+			std::cout << T->GetEdge() << std::endl;
+		}
+		else if (dynamic_cast<Rectangle*>(Object) != nullptr)
+		{
+			Rectangle* T = dynamic_cast<Rectangle*>(Object);
+
+			std::cout << T->GetName() << std::endl;
+			std::cout << T->GetX() << std::endl;
+			std::cout << T->GetY() << std::endl;
+			std::cout << T->GetWidth() << std::endl;
+			std::cout << T->GetHeight() << std::endl;
+		}
+		else if (dynamic_cast<Circle*>(Object) != nullptr)
+		{
+			Circle* T = dynamic_cast<Circle*>(Object);
+
+			std::cout << T->GetName() << std::endl;
+			std::cout << T->GetX() << std::endl;
+			std::cout << T->GetY() << std::endl;
+			std::cout << T->GetRadius() << std::endl;
+		}
+
+		Object->GetX();
+		Object->GetY();
+
+	}
 }
 
 void Editor::Load()
