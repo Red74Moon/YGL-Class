@@ -13,8 +13,6 @@
 
 using namespace std;
 
-
-
 int main()
 {
 	Editor* editor = new Editor();
