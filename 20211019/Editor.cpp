@@ -43,6 +43,9 @@ void Editor::Draw()
 
 void Editor::Save()
 {
+	std::cout << "===========================" << std::endl;
+	std::cout << "저장하는 내용입니다." << std::endl;
+	std::cout << "===========================" << std::endl;
 	for (auto Object : Shapes)
 	{
 		// 심각형이라면 밑변의 길이, 높이가 필요
@@ -77,8 +80,9 @@ void Editor::Save()
 
 		Object->GetX();
 		Object->GetY();
-
+		std::cout << "저장완료." << std::endl << std::endl;
 	}
+	std::cout << "===========================" << std::endl << std::endl;
 }
 
 void Editor::Load()
