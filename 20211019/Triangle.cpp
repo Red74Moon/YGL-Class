@@ -3,6 +3,10 @@
 
 Triangle::Triangle()
 {
+	SetX(0);
+	SetY(0);
+	SetEdge(0);
+	Name = "»ï°¢Çü";
 }
 
 Triangle::Triangle(int NewX, int NewY, int NewEdge)

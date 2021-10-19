@@ -3,6 +3,10 @@
 
 Circle::Circle()
 {
+	SetX(0);
+	SetY(0);
+	SetRadius(0);
+	Name = "¿ø";
 }
 
 Circle::Circle(int NewX, int NewY, int NewRadius)

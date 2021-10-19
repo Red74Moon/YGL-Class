@@ -3,6 +3,11 @@
 
 Rectangle::Rectangle()
 {
+	SetX(0);
+	SetY(0);
+	SetWidth(0);
+	SetHeight(0);
+	Name = "»ç°¢Çü";
 }
 
 Rectangle::Rectangle(int NewX, int NewY, int NewWidth, int NewHeight)

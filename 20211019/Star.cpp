@@ -14,6 +14,11 @@ Star::Star(int NewX, int NewY, int NewColor)
 
 Star::~Star()
 {
+	SetX(0);
+	SetY(0);
+	SetColor(0);
+	Name = "º°";
+
 }
 
 void Star::Draw()

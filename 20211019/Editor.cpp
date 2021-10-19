@@ -44,6 +44,7 @@ void Editor::Draw()
 	{
 		Object->Draw();
 	}
+	std::cout << "그리기 끝" << std::endl;
 }
 
 void Editor::Save()
