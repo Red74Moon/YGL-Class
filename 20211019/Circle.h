@@ -13,7 +13,7 @@ public:
 
     virtual void Draw() override;
 
-protected:
+private:
     int Radius;
 };
 

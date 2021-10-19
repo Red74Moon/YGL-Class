@@ -10,7 +10,7 @@ Triangle::Triangle(int NewX, int NewY, int NewEdge)
 	SetX(NewX);
 	SetY(NewY);
 	SetEdge(NewEdge);
-	Name = "세모";
+	Name = "삼각형";
 }
 
 Triangle::~Triangle()
@@ -20,4 +20,7 @@ Triangle::~Triangle()
 void Triangle::Draw()
 {
 	std::cout << "삼각형 그리기" << std::endl;
+	std::cout << "(" << X << "," << Y << ")" << std::endl;
+	std::cout << "Edge : " << Edge << std::endl;
+
 }

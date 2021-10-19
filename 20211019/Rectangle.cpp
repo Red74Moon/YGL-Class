@@ -21,4 +21,7 @@ Rectangle::~Rectangle()
 void Rectangle::Draw()
 {
 	std::cout << "사각형 그리기" << std::endl;
+	std::cout << "(" << X << "," << Y << ")" << std::endl;
+	std::cout << "Width : " << Width << std::endl;
+	std::cout << "Height : " << Height << std::endl;
 }

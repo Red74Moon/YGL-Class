@@ -11,8 +11,8 @@ public:
 	virtual ~Editor();
 
 	void Draw();
-	void Save();
-	void Load();
+	void Save(); // Serialize
+	void Load(); // Deseialize
 
 	void AddShape(Shape* NewShape);
 
