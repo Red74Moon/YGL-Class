@@ -14,6 +14,11 @@ Editor::Editor()
 
 Editor::~Editor()
 {
+	for (auto Object : Shapes)
+	{
+		delete Object;
+	}
+	Shapes.clear();
 }
 
 void Editor::Draw()
