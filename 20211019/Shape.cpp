@@ -2,6 +2,8 @@
 
 Shape::Shape()
 {
+	SetX(0);
+	SetY(0);
 }
 
 Shape::Shape(int NewX, int NewY)

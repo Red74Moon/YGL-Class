@@ -26,5 +26,4 @@ void Triangle::Draw()
 	std::cout << "삼각형 그리기" << std::endl;
 	std::cout << "(" << X << "," << Y << ")" << std::endl;
 	std::cout << "Edge : " << Edge << std::endl;
-
 }
