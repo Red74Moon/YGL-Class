@@ -90,6 +90,12 @@ void UEngine::SpawnWall(FVector2D NewLocation)
 
 void UEngine::SpawnGoal(FVector2D NewLocation)
 {
+	//생성
+	AGoal* NewGoal = new AGoal();
+	NewGoal->SetLocation(NewLocation);
+
+	//저장
+	World->AddGoal(NewGoal);
 }
 
 void UEngine::SpawnFloor(FVector2D NewLocation)

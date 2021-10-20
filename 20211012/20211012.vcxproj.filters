@@ -42,9 +42,6 @@
     <ClCompile Include="Actor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="classExm.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Polymorphism.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
