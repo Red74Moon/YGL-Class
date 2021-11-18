@@ -13,6 +13,7 @@ int main()
 	WSAData	wsaData;
 
 	SOCKET hServerSocket;
+
 	// client socket
 	SOCKET hClientSocket;
 
@@ -38,6 +39,7 @@ int main()
 
 	// ip주소 구조체의 사이즈 만큼 초기화(0으로..)
 	memset(&serverAddr, 0, sizeof(serverAddr));
+
 	serverAddr.sin_family = AF_INET;
 	serverAddr.sin_addr.s_addr = htonl(INADDR_ANY); // ip 넣는 것
 	serverAddr.sin_port = htons(9190); // port
@@ -49,14 +51,14 @@ int main()
 		exit(-1);
 	}
 
-	// 4.대기
+	// 4 Linten (대기)
 	if (listen(hServerSocket, 0) == SOCKET_ERROR)
 	{
 		cout << "Error Linten" << endl;
 		exit(-1);
 	}
 
-	// 5.accept
+	// 5.accept - client의 접속
 	int clientAddrSize = sizeof(clientAddr);
 	hClientSocket = accept(hServerSocket, (SOCKADDR*)&clientAddr, &clientAddrSize);
 	if (hClientSocket == SOCKET_ERROR)

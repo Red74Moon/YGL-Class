@@ -15,6 +15,7 @@ int main()
 {
 	WSAData	wsaData;
 
+	// server socket
 	SOCKET hServerSocket;
 
 	// ip주소를 넣기 위한 구조체
@@ -37,6 +38,7 @@ int main()
 
 	// ip주소 구조체의 사이즈 만큼 초기화(0으로..)
 	memset(&serverAddr, 0, sizeof(serverAddr));
+
 	serverAddr.sin_family = AF_INET;
 	serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1"); // ip 넣는 것
 	serverAddr.sin_port = htons(9190); // port
