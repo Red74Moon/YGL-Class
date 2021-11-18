@@ -64,6 +64,7 @@ public:
 	}
 
 	Vector2D Center;
+
 	float R;
 
 	bool Intersection(Line CheckLine)
@@ -87,8 +88,6 @@ public:
 	}
 };
 
-
-
 int main()
 {
 	//float First[2] = { 0, 0 };
@@ -99,13 +98,11 @@ int main()
 	float Second[2] = { 10, 10 };
 	float ACircle[3] = { 20, 30, 1 };
 
-
 	Line OneLine(Vector2D(First[0], First[1]), Vector2D(Second[0], Second[1]));
 
 	Circle OneCircle(Vector2D(ACircle[0], ACircle[1]), ACircle[2]);
 
 	std::cout << (OneCircle.Intersection(OneLine) ? "충돌" : "충돌X") << std::endl;
-
 
 	return 0;
 }
