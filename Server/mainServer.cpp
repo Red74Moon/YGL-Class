@@ -35,6 +35,9 @@ int main()
 	// PF_INET을 사용한다.(Protocol Famliy 프로토콜 패밀리 약자)
 	// 연결지향으로 사용한다.(SOCK_STREAM와 SOCK_DGRAM-(보내는 중심) 두가지가있다.)
 	// 0 보통 0을 사용
+	// SOCK_STREAM : TCP로 만들어서 연결지향, 순서까지 보장해서 보내어 준다.
+	// SOCK_DREAM : 택배 보내는 것과 같다. 순서보장이 없다. 
+	//              중간 손실이 생길 수 있다. 앞 뒤가 바뀔 수 있다. (=UDP)
 	hServerSocket = socket(PF_INET, SOCK_STREAM, 0);
 	if (hServerSocket == INVALID_SOCKET) // INVALID_SOCKET ~0 
 	{
@@ -79,6 +82,9 @@ int main()
 			cout << "Error accept" << endl;
 			exit(-1);
 		}
+
+		cout << "Client Connect : " << hClientSocket << endl;
+
 		while (1)
 		{
 			//클라이언트에서 받는다. 
