@@ -40,7 +40,7 @@ int main()
 	memset(&serverAddr, 0, sizeof(serverAddr));
 
 	serverAddr.sin_family = AF_INET;
-	serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1"); // ip 넣는 것
+	serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1"); // ip 넣는 것, 목적지 주소
 	serverAddr.sin_port = htons(9190); // port
 
 	// 3. connect
@@ -51,20 +51,28 @@ int main()
 		exit(-1);
 	}
 
-	// 6.recv 
-	char message[1024] = { 0, };
-	int reccLength = recv(hServerSocket, message, sizeof(message), 0);
-	if (reccLength == -1)
+	while (1)
 	{
-		cout << "Error recv" << endl;
-		exit(-1);
+		char message[1024] = { 0, };
+
+		cout << "서버로 보내는 내용 : ";
+		cin >> message;
+		send(hServerSocket, message, strlen(message) + 1, 0);
+
+		// 6.recv 
+		// char message[1024] = { 0, };
+		int recvLength = recv(hServerSocket, message, sizeof(message), 0);
+		if (recvLength == -1) // 서버랑 끊어지면...(-1)
+		{
+			cout << "Error recv" << endl;
+			exit(-1);
+		}
+
+		// 메시지 받기
+		cout << "서버에서 받은 내용 : " << message << endl;
 	}
-
-	// 메시지 받기
-	cout << message << endl;
-
 	// 마무리
-	closesocket(hServerSocket);
+	closesocket(hServerSocket); // 내쪽 서버 정보 지우고...
 
 	WSACleanup();
 
