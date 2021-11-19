@@ -1,4 +1,8 @@
-﻿#define _WINSOCK_DEPRECATED_NO_WARNINGS
+﻿/*
+	Client Program(UDP)
+*/
+
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
 
 #include <WinSock2.h> //windows
 #include <iostream>
@@ -35,23 +39,29 @@ int main()
 	serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 	serverAddr.sin_port = htons(9190);
 
-	char message[1024] = { "Hello !"};
-	int recvLength = strlen(message);
-	sendto(hServerSocket, message, recvLength + 1, 0, (SOCKADDR*)&serverAddr, sizeof(serverAddr));
-	
-	memset(message, 0, 1024);
-
-	int clientLength = sizeof(serverAddr);
-	recvLength = recvfrom(hServerSocket, message, sizeof(message), 0,
-		(SOCKADDR*)&serverAddr, &clientLength);
-	if (recvLength == -1) // 
+	while (1)
 	{
-		cout << "error : " << hServerSocket << endl;
-		exit(-1);
+		char message[1024] = { 0, };
+		
+		cout << "서버로 보내는 내용 : ";
+		cin >> message;
+
+		int recvLength = strlen(message);
+		sendto(hServerSocket, message, recvLength + 1, 0, (SOCKADDR*)&serverAddr, sizeof(serverAddr));
+
+		memset(message, 0, 1024);
+
+		int clientLength = sizeof(serverAddr);
+		recvLength = recvfrom(hServerSocket, message, sizeof(message), 0,
+			(SOCKADDR*)&serverAddr, &clientLength);
+		if (recvLength == -1) // 
+		{
+			cout << "error : " << hServerSocket << endl;
+			exit(-1);
+		}
+
+		cout << "message from server : " << message << endl;
 	}
-
-	cout << "message from server : " << message << endl;
-
 	closesocket(hServerSocket);
 
 	WSACleanup();
