@@ -1,6 +1,9 @@
 /*
-	Server Program
+	Client Program
 */
+
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+
 #include <WinSock2.h> // Windows
 #include <iostream>
 
@@ -12,15 +15,11 @@ int main()
 {
 	WSAData	wsaData;
 
+	// server socket
 	SOCKET hServerSocket;
-
-	// client socket
-	SOCKET hClientSocket;
 
 	// ip주소를 넣기 위한 구조체
 	SOCKADDR_IN serverAddr;
-	// client ip addr
-	SOCKADDR_IN clientAddr;
 
 	// 1.WindSock 초기화 (윈도우용), 리눅스는 없다.
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
@@ -41,39 +40,32 @@ int main()
 	memset(&serverAddr, 0, sizeof(serverAddr));
 
 	serverAddr.sin_family = AF_INET;
-	serverAddr.sin_addr.s_addr = htonl(INADDR_ANY); // ip 넣는 것
+	serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1"); // ip 넣는 것
 	serverAddr.sin_port = htons(9190); // port
 
-	// 3.ip, port binding
-	if (bind(hServerSocket, (SOCKADDR*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
+	// 3. connect
+
+	if(connect(hServerSocket, (SOCKADDR*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
 	{
-		cout << "Error bind" << endl;
+		cout << "Error connect" << endl;
 		exit(-1);
 	}
 
-	// 4 Linten (대기)
-	if (listen(hServerSocket, 0) == SOCKET_ERROR)
+	// 6.recv 
+	char message[1024] = { 0, };
+	int reccLength = recv(hServerSocket, message, sizeof(message), 0);
+	if (reccLength == -1)
 	{
-		cout << "Error Linten" << endl;
+		cout << "Error recv" << endl;
 		exit(-1);
 	}
 
-	// 5.accept - client의 접속
-	int clientAddrSize = sizeof(clientAddr);
-	hClientSocket = accept(hServerSocket, (SOCKADDR*)&clientAddr, &clientAddrSize);
-	if (hClientSocket == SOCKET_ERROR)
-	{
-		cout << "Error accept" << endl;
-		exit(-1);
-	}
+	// 메시지 받기
+	cout << message << endl;
 
-	// 6.send 
-	char message[] = "Hello World";
-	send(hClientSocket, message, sizeof(message), 0);
-
-	closesocket(hClientSocket);
+	// 마무리
 	closesocket(hServerSocket);
-		
+
 	WSACleanup();
 
 	return 0;
