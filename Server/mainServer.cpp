@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+
 	WSAData	wsaData;
 
 	// 외부에서 들어올 수 있도록 서버에 구멍을 만들어 준다.
@@ -115,5 +116,6 @@ int main()
 	// 역시 윈도우에서만 사용, 소켓청소
 	WSACleanup();
 
-	return 0;
+	return 0;   
+
 }
