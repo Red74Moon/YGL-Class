@@ -1,7 +1,7 @@
 /*
 	Server Program(UDP)
 
-	4. UDP 1234로 접속을 허용하는 서버를 만들어서 "what ary u doing now." 
+	4. UDP 1234로 접속을 허용하는 서버를 만들어서 
 	   접속한 클라이언트에 "what ary u doing now." 메세지를 보내서 
 	   클라이언트가 보내주는 서버를 만들어 보세요.
 */
@@ -42,7 +42,8 @@ int main()
 	serverAddr.sin_port = htons(1234);
 
 	//3. ip, port binding
-	if (bind(hServerSocket, (SOCKADDR*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
+	if (bind(hServerSocket, (SOCKADDR*)&serverAddr, 
+		sizeof(serverAddr)) == SOCKET_ERROR)
 	{
 		cout << "error bind" << endl;
 		exit(-1);
@@ -50,10 +51,12 @@ int main()
 
 	while (1)
 	{
-		char message[1024] = { "what ary u doing now."};
+		char message[1024] = { "what ary u doing now." };
+
 		int clientLength = sizeof(clientAddr);
 		int recvLength = recvfrom(hServerSocket, message, sizeof(message), 0,
 			(SOCKADDR*)&clientAddr, &clientLength);
+
 		if (recvLength == -1) // 
 		{
 			cout << "Client Disconnect  : " << hServerSocket << endl;
@@ -62,7 +65,8 @@ int main()
 
 		cout << "message from client : " << message << endl;
 
-		sendto(hServerSocket, message, recvLength + 1, 0, (SOCKADDR*)&clientAddr, clientLength);
+		sendto(hServerSocket, message, recvLength + 1, 0, 
+			(SOCKADDR*)&clientAddr, clientLength);
 	}
 	closesocket(hServerSocket);
 

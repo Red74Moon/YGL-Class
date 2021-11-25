@@ -2,8 +2,8 @@
 	Client Program(UDP)
 
 	3. UDP 1234로 접속을 하는 클라이언트를 만들어서 
-	"udpudp" 메세지를 보내서 
-	서버에서 보내주는 클라이언트를 만들어 보세요.
+	 클라이언트가 "udpudp" 메세지를 보내서 
+	 서버에서 보내주는 메시지를 받는 클라이언트를 만들어 보세요.
 */
 
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
