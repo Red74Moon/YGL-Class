@@ -1,5 +1,5 @@
 /*
-	Server Program
+	Server Program(TCP)
 */
 #include <WinSock2.h> // Windows
 #include <iostream>

@@ -1,5 +1,8 @@
 /*
-	Client Program(TCP)
+ 	Client Program(TCP)
+
+     1. TCP 5001 포트로 접속해서 "give me message."를 보내서 
+	 보내주는 정보를 받아 오는 클라이언트를 만들어 보세요.
 */
 
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
@@ -41,11 +44,11 @@ int main()
 
 	serverAddr.sin_family = AF_INET;
 	serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1"); // ip 넣는 것, 목적지 주소
-	serverAddr.sin_port = htons(9190); // port
+	serverAddr.sin_port = htons(5001); // port
 
 	// 3. connect
 
-	if(connect(hServerSocket, (SOCKADDR*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
+	if (connect(hServerSocket, (SOCKADDR*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
 	{
 		cout << "Error connect" << endl;
 		exit(-1);
@@ -53,10 +56,12 @@ int main()
 
 	while (1)
 	{
-		char message[1024] = { 0, };
+		char message[1024] = {"give me message."};
+		
 
-		cout << "서버로 보내는 내용 : ";
-		cin >> message;
+		//cout << "서버로 보내는 내용 : ";
+		//cin >> message;
+
 		send(hServerSocket, message, strlen(message) + 1, 0);
 
 		// 6.recv 
