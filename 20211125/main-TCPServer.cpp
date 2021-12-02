@@ -1,5 +1,5 @@
 /*
-	Server Program
+	Server Program(TPC)
 
 	2. TCP 5001 포트로 접속을 허용하는 서버를 만들어서 
 	  서버가 클라이언트에 "show me the money."를 보내서 
