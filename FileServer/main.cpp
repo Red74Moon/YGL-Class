@@ -59,14 +59,13 @@ int main()
 			memset(Buffer, 0, sizeof(Buffer));
 		}
 
-		recv(ClientSocket, Buffer, sizeof(Buffer), 0);
-
-		printf("from client : %s\n", Buffer);
-
+		char Message[] = "End Of file.";
+		send(ClientSocket, Message, sizeof(Message), 0);
+		
 		fclose(sourceFile);
 
 		closesocket(ClientSocket);
-		printf("disconnect\n");
+		cout << "disconnect" << endl;
 	}
 
 	closesocket(ServerSocket);

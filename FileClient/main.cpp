@@ -51,8 +51,10 @@ int main()
 	shutdown(ServerSocket, SD_SEND);
 
 	//서버에서 보내는 연결이 끊기면 완료  정보를 보내줌.
-	char Message[] = "End Of file.";
-	send(ServerSocket, Message, sizeof(Message), 0);
+
+	recv(ServerSocket, Buffer, sizeof(Buffer), 0);
+
+	cout << "from server : " << Buffer << endl;
 
 	fclose(destinationFile);
 	closesocket(ServerSocket);
