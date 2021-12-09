@@ -2,43 +2,41 @@
 #include <Windows.h>
 #include <process.h>
 
-struct Test
-{
-	int a;
-	int b;
-};
+unsigned WINAPI ThreadIncrease(void* arg);
+unsigned WINAPI ThreadDecrease(void* arg);
 
-unsigned WINAPI Thread(void* arg);
+int Gold = 0;
 
 int main()
 {
-	Test test;
-
-	test.a = 10;
-	test.b = 20;
-
-	HANDLE ThreadHandle;
+	HANDLE ThreadHandle[2];
 	unsigned int threadID;
 
-	ThreadHandle = (HANDLE)_beginthreadex(NULL, 0, Thread, &test, 0, &threadID);
+	ThreadHandle[0] = (HANDLE)_beginthreadex(NULL, 0, ThreadIncrease, NULL, 0, &threadID);
+	ThreadHandle[1] = (HANDLE)_beginthreadex(NULL, 0, ThreadDecrease, NULL, 0, &threadID);
 
-	if (ThreadHandle == 0)
-	{
-		//can't create Thread
-		printf("Error(Can't create Thread)");
-		exit(-1);
-	}
+	WaitForMultipleObjects(2, ThreadHandle, TRUE, INFINITE);
 
-	printf("handle : %d\n", (int)ThreadHandle);
-
-	Sleep(3000); // Sleep이 없으면 시작은 되었으나 함수가 실행되기전 끝나서 출력이 되지 않는다.
+	printf("\nGold : %d\n", Gold);
 
 	return 0;
 }
 
-unsigned WINAPI Thread(void* arg)
+unsigned WINAPI ThreadIncrease(void* arg)
 {
-	printf("Thread Start : %d\n", *(int*)arg);
-
+	for (int i = 0; i < 1000; ++i)
+	{
+		Gold = Gold + 1;
+		printf("Increase Gold : %d\n", Gold);
+	}
+	return 0;
+}
+unsigned WINAPI ThreadDecrease(void* arg)
+{
+	for (int i = 0; i < 1000; ++i)
+	{
+		Gold = Gold - 1;
+		printf("Decrease Gold : %d\n", i);
+	}
 	return 0;
 }
