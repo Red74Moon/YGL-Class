@@ -1,22 +1,37 @@
 #include <stdio.h>
 #include <Windows.h>
 #include <process.h>
+#include <time.h>
 
 unsigned WINAPI ThreadIncrease(void* arg);
 unsigned WINAPI ThreadDecrease(void* arg);
 
 int Gold = 0;
 
-CRITICAL_SECTION cs; //임계영역
+//커널 오브젝트로 작업
+HANDLE MutexHandle;
 
 int main()
 {
 	HANDLE ThreadHandle[2];
 	unsigned int threadID;
 
-	//CRITICAL_SECTION 초기화
-	InitializeCriticalSection(&cs);
+	clock_t startTime;
+	clock_t endTime;
 
+	startTime = clock();
+
+	/*-----------------------------------------------------------------*/
+	WCHAR MultexName[] = L"무조건더하기";
+	MutexHandle = CreateMutex(NULL, FALSE, MultexName);
+	if (GetLastError() == ERROR_ALERTED)
+	{
+		printf("이미 실행중입니다.");
+		return -1;
+	}
+
+	Sleep(3000);
+	/*-----------------------------------------------------------------*/
 
 	ThreadHandle[0] = (HANDLE)_beginthreadex(NULL, 0, ThreadIncrease, NULL, 0, &threadID);
 	ThreadHandle[1] = (HANDLE)_beginthreadex(NULL, 0, ThreadDecrease, NULL, 0, &threadID);
@@ -25,33 +40,32 @@ int main()
 
 	printf("\nGold : %d\n", Gold);
 
-	//CRITICAL_SECTION 지우기
-	DeleteCriticalSection(&cs); 
+	CloseHandle(MutexHandle);
+
+	endTime = clock();
+
+	printf("\nElapsed Time : %f\n", (double)(endTime -startTime));
 
 	return 0;
 }
 
 unsigned WINAPI ThreadIncrease(void* arg)
 {
-	// 문열고
-	EnterCriticalSection(&cs);
-	for (int i = 0; i < 10; ++i)
+	WaitForSingleObject(MutexHandle, INFINITE);
+	for (int i = 0; i < 7000000; ++i)
 	{
 		Gold = Gold + 1;
-		printf("Increase Gold : %d\n", Gold);
 	}
-	// 문닫고
-	LeaveCriticalSection(&cs);
+	ReleaseMutex(MutexHandle);
 	return 0;
 }
 unsigned WINAPI ThreadDecrease(void* arg)
 {
-	EnterCriticalSection(&cs);
-	for (int i = 0; i < 10; ++i)
+	WaitForSingleObject(MutexHandle, INFINITE);
+	for (int i = 0; i < 7000000; ++i)
 	{
 		Gold = Gold - 1;
-		printf("Decrease Gold : %d\n", Gold);
 	}
-	LeaveCriticalSection(&cs);
+	ReleaseMutex(MutexHandle);
 	return 0;
 }
