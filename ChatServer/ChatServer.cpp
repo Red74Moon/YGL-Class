@@ -3,152 +3,128 @@
 	
 	채팅 서버와 클라이언트 만들기
 
-	Server
-
-	client thread
-
+	Server : client thread
 
 */
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+
 #include <WinSock2.h> // Windows
 #include <iostream>
 #include <Windows.h>
 #include <process.h>
+#include <string>
+#include <vector>
 
 #pragma comment(lib, "ws2_32.lib")
 
 using namespace std;
 
-unsigned WINAPI accept(void* arg);
+//공유되는 정보
+//추가 삭제, 읽기
+vector<SOCKET> ClientList;
 
-HANDLE MutexHandle;
-SOCKET ServerSocket;
-SOCKET ClientSocket;
-// ip주소를 넣기 위한 구조체
-SOCKADDR_IN ServerAddr;
-// client ip addr
-SOCKADDR_IN ClientAddr;
-WSAData	wsaData;
+CRITICAL_SECTION SocketCriticalSection;
 
-fd_set Reads;
-fd_set Copys;
+unsigned WINAPI ProcessClient(void* arg);
 
 int main()
 {
-	HANDLE ThreadHandle;
-	unsigned int threadID;
 
-	MutexHandle = CreateMutex(NULL, FALSE, NULL);
+	cout << "-- Chat Server --" << endl << endl;
+	SOCKET ServerSocket;
+	SOCKADDR_IN ServerAddr;
+
+	SOCKET ClientSocket;
+	SOCKADDR_IN ClientAddr;
+
+	InitializeCriticalSection(&SocketCriticalSection);
+
+	WSAData	wsaData;
+
+	//초기화
+	WSAStartup(MAKEWORD(2, 2), &wsaData);
+
+	//서버 구조체 초기화
+	memset(&ServerAddr, 0, sizeof(SOCKADDR_IN));
+	ServerAddr.sin_family = AF_INET; //IP V4
+	ServerAddr.sin_port = htons(9190);
+	ServerAddr.sin_addr.s_addr = INADDR_ANY; //아무거나
+
+	//소켓 생성
+	ServerSocket = socket(PF_INET, SOCK_STREAM, 0);
+
+	//bind
+	bind(ServerSocket, (SOCKADDR*)&ServerAddr, sizeof(ServerAddr));
+
+	//listen
+	listen(ServerSocket, 5);
 
 
-	ThreadHandle = (HANDLE)_beginthreadex(NULL, 0, accept, NULL, 0, &threadID);
+	//main thread, accept
+	while (true)
+	{
+		int ClientAddrSize = sizeof(ClientAddr);
+		ClientSocket = accept(ServerSocket, (SOCKADDR*)&ClientAddr, &ClientAddrSize);
 
-	WaitForSingleObject(ThreadHandle, INFINITE);
-	
-	CloseHandle(MutexHandle);
+		//ClientSocket을 기록(저장)
+		EnterCriticalSection(&SocketCriticalSection);
 
-	// 7.마무리
-	closesocket(ClientSocket);
+		ClientList.push_back(ClientSocket);
+		
+		LeaveCriticalSection(&SocketCriticalSection);
+		
+		//worker thread
+		HANDLE ThreadHandle = (HANDLE)_beginthreadex(NULL, 0, ProcessClient, (void*)&ClientSocket, 0, NULL);
+
+		//ClientSocket 데이터 처리, recv, send(Thread)
+		cout << "Client Connect : " << ClientSocket << endl;
+	}
+
 	closesocket(ServerSocket);
 
-	// 역시 윈도우에서만 사용, 소켓청소
+	DeleteCriticalSection(&SocketCriticalSection);
+
 	WSACleanup();
 
 	return 0;
 }
 
-unsigned WINAPI accept(void* arg)
+//worker thread, client send, recv
+unsigned __stdcall ProcessClient(void* arg)
 {
-	fd_set Reads;
-	fd_set Copys;
-	WaitForSingleObject(MutexHandle, INFINITE);
+	SOCKET ClientSocket = *(SOCKET*)arg;
+	char Buffer[1024] = { 0, };
 
-	int Result = WSAStartup(MAKEWORD(2, 2), &wsaData);
-	if (Result != 0)
+	while(true)
 	{
-		printf("WSAStartup");
-		exit(-1);
-	}
+		int RecvLength = recv(ClientSocket, Buffer, sizeof(Buffer), 0);
 
-	ServerSocket = socket(AF_INET, SOCK_STREAM, 0);
-	if (ServerSocket == INVALID_SOCKET)
-	{
-		printf("socket");
-		exit(-1);
-	}
-
-	FD_ZERO(&Reads);
-	FD_SET(ServerSocket, &Reads);
-
-	memset(&ServerAddr, 0, sizeof(SOCKADDR_IN));
-	ServerAddr.sin_family = PF_INET; //IP V4
-	ServerAddr.sin_port = htons(9190);
-	ServerAddr.sin_addr.s_addr = INADDR_ANY; //아무거나
-
-	bind(ServerSocket, (SOCKADDR*)&ServerAddr, sizeof(ServerAddr));
-
-	listen(ServerSocket, 5);
-
-	TIMEVAL timeout;
-	timeout.tv_sec = 5;
-	timeout.tv_usec = 5000;
-
-	while (1)
-	{
-		Copys = Reads;
-
-		int fd_num = select(0, &Copys, 0, 0, &timeout);
-		if (fd_num == SOCKET_ERROR)
+		if (RecvLength <= 0)
 		{
-			break;
-		}
+			//연결이 끊어졌을 때
+			closesocket(ClientSocket);
+			
+			EnterCriticalSection(&SocketCriticalSection);
 
-		if (fd_num == 0)
-		{
-			continue;
-			//다른 서버 로직
-		}
-
-		for (int i = 0; i < Reads.fd_count; ++i)
-		{
-			//이벤트가 일어나면 처리
-			if (FD_ISSET(Reads.fd_array[i], &Copys))
+			for (auto itr = ClientList.begin(); itr != ClientList.end(); ++itr)
 			{
-				if (Reads.fd_array[i] == ServerSocket)
+				if (*itr == ClientSocket)
 				{
-					int ClientAddrLength = sizeof(ClientAddr);
-					ClientSocket = accept(ServerSocket, (SOCKADDR*)&ClientAddr, &ClientAddrLength);
-					FD_SET(ClientSocket, &Reads);
-					printf("connection client : %d\n", ClientSocket);
-				}
-				else
-				{
-					//클라이언트 데이터 처리
-					char Buffer[1024] = { 0, };
-					int RecvLength = 0;
-					RecvLength = recv(Reads.fd_array[i], Buffer, sizeof(Buffer), 0);
-					if (RecvLength == 0)
-					{
-						//close connection
-						FD_CLR(Reads.fd_array[i], &Reads);
-						closesocket(Reads.fd_array[i]);
-						printf("close connection : %d\n", Reads.fd_array[i]);
-					}
-					else
-					{
-						for (int j = 0; j < Reads.fd_count; ++j)
-						{
-							if (Reads.fd_array[j] != ServerSocket)
-							{
-								send(Reads.fd_array[j], Buffer, RecvLength, 0);
-							}
-						}
-					}
+					ClientList.erase(itr);
+					break;
 				}
 			}
+			LeaveCriticalSection(&SocketCriticalSection);
+		}
+		else
+		{
+			EnterCriticalSection(&SocketCriticalSection);
+			for (auto itr = ClientList.begin(); itr != ClientList.end(); ++itr)
+			{
+				send(*itr, Buffer, strlen(Buffer) +1 , 0);
+			}
+			LeaveCriticalSection(&SocketCriticalSection);
 		}
 	}
-
-	closesocket(ServerSocket);
-	ReleaseMutex(MutexHandle);
 	return 0;
 }
